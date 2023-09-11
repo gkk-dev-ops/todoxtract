@@ -2,51 +2,49 @@
 <html>
   <head>
     <title>TODOs - {{ repo_path }}</title>
-    <link rel="shortcut icon" href="assets/to-do.svg" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs"></script>
+    <link rel="shortcut icon" href="assets/to-do.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="assets/style.css" />
   </head>
-  <body class="bg-slate-200">
-    <div
-      class="
-        w-max-[768px]
-        flex flex-col
-        gap-4
-        justify-center
-        items-center
-        mt-4
-        px-4
-        text-base
-      "
-    >
-      <h1 class="font-bold"><span class="text-orange-500">TODOs</span> Found in <span class="text-orange-500">{{ repo_path }}</span> Repo</h1>
-      <ul class="flex flex-col gap-2">
-        {% for todo in todos %}
-        <div class="flex flex-row gap-2 items-center" x-data="{open: false}">
-          <input type="checkbox" x-on:click="open = ! open"/>
-          <li x-bind:class="! open ? '' : 'line-through'">
-            <span class="text-orange-500 font-bold">{{ todo.filename }}</span> (Line {{ todo.line_number }}):
-            {{ todo.content }}
-          </li>
-        </div>
-        {% endfor %}
-      </ul>
-      <div
-        class="
-          w-full
-          mt-4
-          pt-2
-          border-t-1 border-orange
-          justify-center
-          flex
-          items-center
-        "
-      >
-      <p>
-          Copyright &copy; <span class="font-bold text-orange-500"> gkk </span>
-          <span x-text="new Date().getFullYear()"></span>
-      </p>
+  <body class="container">
+    <h1 class="font-bold">
+      <span class="text-orange-500">TODOs</span> Found in
+      <span class="text-orange-500">{{ repo_path }}</span> Repo
+    </h1>
+    <div class="flex flex-col gap-4 todos-list">
+      <div class="copy-btn">
+        <img src="assets/copy.svg" alt="copy all todos" />
       </div>
+      {% for todo in todos %}
+      <div class="flex flex-row items-center gap-4" x-data="{open: false}">
+        <input type="checkbox" x-on:click="open = ! open" />
+        <div class="todos-list-item" x-bind:class="! open ? '' : 'line-through'">
+          <span class="text-orange-500 font-bold">{{ todo.filename }}</span>
+          (Line {{ todo.line_number }}): {{ todo.content }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="footer">
+      <p>
+        Copyright &copy; <span class="font-bold text-orange-500"> gkk </span>
+        <span x-text="new Date().getFullYear()"></span>
+      </p>
     </div>
   </body>
 </html>
+<script>
+  const copyBtn = document.querySelector(".copy-btn");
+  const todosList = document.querySelectorAll(".todos-list-item");
+  const copyTodos = () => {
+    let tmp = ""
+    console.log(todosList);
+    for(let i = 0; i < todosList.length; i++) {
+      console.log(todosList[i]);
+      tmp += todosList[i].textContent.trim().trimStart() + "\n";
+    }
+    
+    navigator.clipboard.writeText(tmp);
+  };
+  copyBtn.addEventListener("click", copyTodos);
+</script>

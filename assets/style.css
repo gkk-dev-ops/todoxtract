@@ -1,0 +1,110 @@
+.container {
+  width: 768px;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  padding-inline: 4rem;
+  font-size: 1.25rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-orange-500 {
+  color: #f97316;
+}
+
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.border-t-1 {
+  border-top-width: 1px;
+}
+
+.border-orange {
+  border-color: #f97316;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+  justify-content: center;
+  background-color: #e5e7eb;
+  margin-inline: auto;
+}
+
+ul,
+li {
+  list-style: none;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+}
+ul::marker,
+li::marker {
+  display: none;
+}
+
+.footer {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.todos-list {
+  padding-top: 1rem;
+  position: relative;
+}
+.copy-btn {
+  width: 2rem;
+  height: 2rem;
+  background-color: #f97316;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  position: absolute;
+  top: -0.5rem;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+}
+.copy-btn:hover {
+  background-color: #de6916;
+}
